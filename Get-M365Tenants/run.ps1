@@ -1,6 +1,6 @@
 param($name)
 
-$customerExclude = $env:customerExclude -split '|'
+$customerExclude = ($env:customerExclude).Split('|')
 
 try {
     $Authheaders = Get-GraphToken -tenantid $env:Tenantid
