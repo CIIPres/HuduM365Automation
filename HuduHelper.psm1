@@ -144,7 +144,7 @@ function New-GraphBulkRequest ($Requests, $tenantid, $Headers) {
     }
 
     foreach ($MoreData in $ReturnedData.Responses | Where-Object { $_.body.'@odata.nextLink' }) {
-        $AdditionalValues = New-GraphGetRequest -ComplexFilter -uri $MoreData.body.'@odata.nextLink' -tenantid $TenantFilter
+        $AdditionalValues = New-GraphGetRequest -ComplexFilter -uri $MoreData.body.'@odata.nextLink' -tenantid $tenantid
         $NewValues = [System.Collections.Generic.List[PSCustomObject]]$MoreData.body.value
         $AdditionalValues | ForEach-Object { $NewValues.add($_) }
         $MoreData.body.value = $NewValues
