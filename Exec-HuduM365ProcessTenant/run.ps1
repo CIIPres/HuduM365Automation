@@ -317,8 +317,7 @@ try {
         try {
             $GroupMembersReturn = New-GraphBulkRequest -Headers $AuthHeaders -Requests $GroupRequestArray -tenantid $TenantFilter
         } catch {
-            $GroupRequestArrayList = $GroupRequestArray | Format-List
-            $CompanyResult.Errors.add("Company $TenantFilter : Unable to fetch Group Membership Details for group $GroupRequestArrayList : $_")
+            $CompanyResult.Errors.add("Company $TenantFilter : Unable to fetch Group Membership Details for group $GroupRequestArray : $_")
             $GroupMembersReturn = $null
         }
         $Groups = foreach ($Result in $GroupMembersReturn) {
